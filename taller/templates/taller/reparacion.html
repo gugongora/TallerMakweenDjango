@@ -1,0 +1,169 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Taller Mecanico Rayo Mcqueen</title>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src={% static "navbar_footer.js" %}></script>
+  </head>
+  <body>
+    <div id="navbar">{% include 'taller/navbar.html' %}</div>
+
+      <!--FOTO CABECERA-->
+    <section class="home-reparacion">
+      <div class="contenido-home-reparacion">
+        <h2>Reparaciones</h2>
+        <p>
+          Los innovadores métodos de reparación preservan la calidad técnica y
+          estética de tu auto
+        </p>
+      </div>
+    </section>
+
+    <!--CARDS-->
+    <div class="container container-servicios">
+      <div class="card mb-3" style="border: none">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img
+              src={% static 'img/reparacion-mid.jpg'%}
+              class="img-fluid rounded"
+              alt="..."
+            />
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h1 class="card-title">Solucionamos tus problemas</h1>
+              <p class="card-text">
+                Solucionamos tus problemas de manera eficiente y confiable. En
+                nuestro taller, nos especializamos en reparaciones que
+                garantizan tu seguridad en la carretera. Confía en nuestro
+                equipo para resolver cualquier inconveniente con tu vehículo y
+                devolverte la tranquilidad al volante.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="titulo-inferior">
+        <h2>Más servicios y reparaciones</h2>
+        <p>Descubre otros servicios y reparaciones para tu auto</p>
+      </div>
+      <br /><br />
+
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
+          <div class="card h-100">
+            <img
+              class="img-cards-mant"
+              src={% static 'img/reparacion-parabrisa.webp'%}
+              class="card-img-top"
+              alt="reparacion_parabrisa"
+            />
+            <div class="card-body">
+              <h5 class="card-title">
+                Reparación y sustitución del parabrisas
+              </h5>
+              <p class="card-text">
+                Recupera la claridad en tu conducción con nuestro servicio de
+                reparación y sustitución de parabrisas.
+              </p>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-toggle="popover"
+                title="Precio"
+                data-bs-content="Desde $30.000"
+              >
+                Precios
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <img
+              class="img-cards-mant"
+              src={% static 'img/freno-instalacion.jpg'%}
+              class="card-img-top"
+              alt="cambio_freno"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Frenos y forros de freno</h5>
+              <p class="card-text">
+                Servicio completo de frenos, incluyendo inspección y reemplazo
+                de forros cuando sea necesario.
+              </p>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-toggle="popover"
+                title="Precio"
+                data-bs-content="Desde $24.990"
+              >
+                Precios
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <img
+              class="img-cards-mant"
+              src={% static 'img/cambio-de-bateria.jpg'%}
+              class="card-img-top"
+              alt="cambio_bateria"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Cambio de la batería</h5>
+              <p class="card-text">
+                Renueva la energía de tu vehículo con nuestro servicio de cambio
+                de batería.
+              </p>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-toggle="popover"
+                title="Precio"
+                data-bs-content="Desde $9.000"
+              >
+                Precios
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--FIN CARDS-->
+
+    <div id="footer">{% include 'taller/footer.html' %}</div>
+    <script src="mapaclima.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      var popoverTriggerList = [].slice.call(
+        document.querySelectorAll('[data-bs-toggle="popover"]')
+      );
+      var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+        return new bootstrap.Popover(popoverTriggerEl);
+      });
+    </script>
+  </body>
+</html>
