@@ -107,7 +107,7 @@ def clientes_findEdit(request,pk):
 
         context={'cliente':cliente, 'generos':generos}
         if cliente:
-            return render(request, 'taller/clientes_list.html', context)
+            return render(request, 'taller/clientes_edit.html', context)
         else:
             context={'mensaje':"Error, rut no existe..."}
             return render(request, 'taller/clientes_list.html', context)
