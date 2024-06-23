@@ -10,7 +10,7 @@ class Genero(models.Model):
         return str(self.genero)
 
 
-class Alumno(models.Model):
+class Cliente(models.Model):
     rut              = models.CharField(primary_key=True, max_length=10)
     nombre           = models.CharField(max_length=20)
     apellido_paterno = models.CharField(max_length=20)
@@ -24,3 +24,8 @@ class Alumno(models.Model):
 
     def __str__(self):
         return str(self.nombre)+" "+str(self.apellido_paterno)   
+
+class Usuario(models.Model):
+    nombre_usuario      = models.CharField(primary_key=True, max_length=15)
+    correo              = models.CharField(unique=True, max_length=100)
+    contrasena          = models.CharField(max_length=20)

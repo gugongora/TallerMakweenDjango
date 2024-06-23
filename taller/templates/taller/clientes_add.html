@@ -8,14 +8,14 @@
 <body>
 
     <div style="text-align: center;">
-        <h2>Formulario CRUD para Alumnos </h2><br>
-        <form action="alumnosAdd" method="POST">
+        <h2>Formulario CRUD para Clientes </h2><br>
+        <form action="clientesAdd" method="POST">
             {% csrf_token %}
 
             <pre>Rut:              <input type="text" name="rut"    ></pre>
             <pre>Nombre:           <input type="text" name="nombre" ></pre>
             <pre>Apellido P.:      <input type="text" name="paterno"></pre>
-            <pre>Apellido M.:      <input type="text" name="meterno"></pre>
+            <pre>Apellido M.:      <input type="text" name="materno"></pre>
             <pre>Fecha Nac.:          <input type="date" name="fechaNac"> </pre>
             <pre>Genero:            <select name="genero">
                 {% for genero in generos %}
@@ -29,7 +29,7 @@
             <input type="submit" name="opcion" value="Agregar">
 
         </form> <br><br>
-        <a href={% url 'crud' %}>Volver </a>
+        <a href="{% url 'crud' %}">Volver </a>
         <br>
         <div id="idMensajes">
             {% if mensaje %}

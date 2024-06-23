@@ -9,11 +9,11 @@
 </head>
 <body>
 
-    <h1>Editar Datos de Alumnos</h1><br>
+    <h1>Editar Datos de Clientes</h1><br>
     <br>
 
     <button type="button">
-        <a href="{% url 'alumnosAdd' %}"> Agregar </a>
+        <a href="{% url 'clientesAdd' %}"> Agregar </a>
     </button>
 
     <div id="idMensajes">
@@ -22,19 +22,19 @@
         {% endif %}
     </div>
         <table>
-            {% if alumnos %}
+            {% if clientes %}
                 <th>Rut</th>
                 <th>Nombre</th>
                 <th>Apellido P.</th>
                 <th>Eliminar</th>
                 <th>Modificar</th>
-                {% for x in alumnos %}
+                {% for x in clientes %}
                     <tr>
                         <td> {{ x.rut }}
                         <td> {{ x.nombre }}
                         <td> {{ x.apellido_paterno }}
-                        <td> <a href="">Eliminar</a>
-                        <td> <a href="">Modificar</a>   
+                        <td> <a href="{% url 'clientes_del' pk=x.rut %}">Eliminar</a>
+                        <td> <a href="{% url 'clientes_findEdit' pk=x.rut %}">Modificar</a>   
                     </tr>
                 {% endfor %}
             {% endif %}
