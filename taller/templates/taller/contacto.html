@@ -1,0 +1,132 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Taller Mecanico Rayo Mcqueen</title>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src={% static "navbar_footer.js" %}></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  </head>
+
+  <body>
+    <!--NAVBAR-->
+  <div id="navbar">{% include 'taller/navbar.html' %}</div>
+
+    <!--FORMULARIO-->
+    <div class="container d-flex justify-content-center text-center">
+      <div class="col-md-8">
+        <h1 style="padding-top: 5%; padding-bottom: 5%">
+          Rellena el formulario
+        </h1>
+
+        <form class="was-validated" action="contacto.html">
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <div class="form-floating">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="validationCustom01"
+                  placeholder=" "
+                  required
+                />
+                <label for="validationCustom01" class="form-label"
+                  >Nombre</label
+                >
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-floating">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="validationCustom02"
+                  placeholder=" "
+                  required
+                />
+                <label for="validationCustom02" class="form-label"
+                  >Apellido</label
+                >
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <div class="form-floating">
+              <input
+                type="email"
+                class="form-control"
+                id="exampleFormControlInput1"
+                placeholder=" "
+                required
+              />
+              <label for="exampleFormControlInput1" class="form-label"
+                >Correo electrónico</label
+              >
+            </div>
+          </div>
+          <div class="mb-3">
+            <div class="form-floating">
+              <select class="form-select" required aria-label="select example">
+                <option value="">Seleccionar</option>
+                <option value="1">Reparación</option>
+                <option value="2">Mantención</option>
+              </select>
+              <label for="validationCustom03" class="form-label"
+                >Tipo de consulta</label
+              >
+            </div>
+          </div>
+          <div class="mb-3">
+            <div class="form-floating">
+              <textarea
+                style="min-height: 100px"
+                class="form-control"
+                id="validationTextarea"
+                placeholder=" "
+                required
+              ></textarea>
+              <label for="validationTextarea" class="form-label"
+                >Detalles</label
+              >
+            </div>
+          </div>
+          <div class="mb-3">
+            <button class="btn btn-primary" type="submit">Enviar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!--FIN FORMULARIO-->
+
+    <div id="footer">{% include 'taller/footer.html' %}</div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="mapaclima.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <script>
+      var popoverTriggerList = [].slice.call(
+        document.querySelectorAll('[data-bs-toggle="popover"]')
+      );
+      var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+        return new bootstrap.Popover(popoverTriggerEl);
+      });
+    </script>
+  </body>
+</html>
+

@@ -20,6 +20,15 @@
   </head>
 
   <body>
+    <h1>Hola Alumnos</h1>
+    <br>
+    {% for alumno in alumnos %}
+
+      {{alumno.rut}}, {{alumno.nombre}}, {{alumno.apellido_paterno}},
+      {{alumno.apellido_materno}}, {{alumno.id_genero.genero}} <br>
+
+    {% endfor %}  
+      
     <div id="navbar">{% include 'taller/navbar.html' %}</div>
 
     <!--CARRUSEL DE IMAGEN-->
@@ -64,7 +73,7 @@
             <!--Texto Imagen 1-->
             <h1 class="titulo-trabajos-inicio">Trabajo de Mantención</h1>
             <a
-              href="trabajos.html#carouselExampleFade3"
+              href="{% url 'trabajos' %}#carouselExampleFade3"
               type="button"
               class="btn bg-light text-black"
             >
@@ -84,7 +93,7 @@
             <!--Texto Imagen 2-->
             <h1 class="titulo-trabajos-inicio">Trabajo de Reparación</h1>
             <a
-              href="trabajos.html#carouselExampleFade2"
+              href="{% url 'trabajos' %}#carouselExampleFade2"
               type="button"
               class="btn bg-light text-black"
             >
@@ -104,7 +113,7 @@
             <!--Texto Imagen 3-->
             <h1 class="titulo-trabajos-inicio">Trabajo realizado</h1>
             <a
-              href="trabajos.html#carouselExampleFade1"
+              href="{% url 'trabajos' %}#carouselExampleFade1"
               type="button"
               class="btn bg-light text-black"
             >
@@ -216,7 +225,7 @@
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
                   Pariatur, odit.
                 </p>
-                <a class="nav-link" href="mantencion.html"
+                <a class="nav-link" href="{% url 'mantencion' %}"
                   ><button class="btn bg-dark text-black">
                     <span style="color: aliceblue">Ver más</span>
                   </button></a
@@ -237,7 +246,7 @@
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
                   Beatae, qui?
                 </p>
-                <a class="nav-link" href="reparacion.html"
+                <a class="nav-link" href="{% url 'reparacion'%}"
                   ><button class="btn bg-dark text-black">
                     <span style="color: aliceblue">Ver más</span>
                   </button></a
@@ -259,7 +268,7 @@
                   Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                   Maxime, doloremque.
                 </p>
-                <a class="nav-link" href="refacciones.html"
+                <a class="nav-link" href="{% url 'refacciones'%}"
                   ><button class="btn bg-dark text-black">
                     <span style="color: aliceblue">Ver más</span>
                   </button></a

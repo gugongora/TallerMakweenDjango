@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Taller Mecanico Rayo Mcqueen</title>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src={% static "navbar_footer.js" %}></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  </head>
+
+  <div id="navbar">{% include 'taller/navbar.html' %}</div>
+
+    <!--CARDS-->
+    <div class="container" style="padding-bottom: 5%">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="section-header text-center pb-5">
+            <h2>Nuestro equipo de trabajo</h2>
+            <p>Conoce a nuestros especialistas.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row row-cols-1 row-cols-md-2 g-4">
+        <!--Mecanico 1-->
+        <div class="col">
+          <div class="card h-100">
+            <img src={% static 'img/mecanico-1.jpg' %} class="card-img-top" alt="..." />
+            <div class="card-body">
+              <h5 class="card-title">Juan Perez</h5>
+              <p class="card-text">
+                Se encarga de reparar daños en la carrocería del vehículo, como
+                abolladuras, arañazos, corrosión, y también de realizar trabajos
+                de pintura para restaurar la apariencia estética del automóvil.
+              </p>
+              <a href="#" class="btn btn-danger">Saber más</a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <!--Mecanico 2-->
+          <div class="card h-100">
+            <img src={% static 'img/mecanico.jpg' %} class="card-img-top" alt="..." />
+            <div class="card-body">
+              <h5 class="card-title">Gabriela Mistral</h5>
+              <p class="card-text">
+                Se dedica al mantenimiento y reparación de los sistemas de
+                escape de los vehículos, incluyendo el tubo de escape, el
+                catalizador, el silenciador y otros componentes relacionados.
+              </p>
+              <a href="#" class="btn btn-danger">Saber más</a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <!--Mecanico 3-->
+          <div class="card h-100">
+            <img src={% static 'img/mecanico-2.jpg' %} class="card-img-top" alt="..." />
+            <div class="card-body">
+              <h5 class="card-title">Francisco Chocó</h5>
+              <p class="card-text">
+                Se especializan en identificar y solucionar problemas
+                relacionados con el motor del vehículo, como problemas de
+                arranque, falta de potencia, fallos de encendido, entre otros.
+                Utilizan herramientas de diagnóstico avanzadas para identificar
+                problemas específicos en el motor.
+              </p>
+              <a href="#" class="btn btn-danger">Saber más</a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <!--Mecanico 4-->
+          <div class="card h-100">
+            <img src={% static 'img/mecanico-3.jpg' %} class="card-img-top" alt="..." />
+            <div class="card-body">
+              <h5 class="card-title">Kendrick Lamar</h5>
+              <p class="card-text">
+                Realiza tareas como montaje, desmontaje, equilibrado y
+                alineación de neumáticos y llantas. También pueden reparar
+                pinchazos y realizar inspecciones de seguridad en los
+                neumáticos.
+              </p>
+              <a href="#" class="btn btn-danger">Saber más</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--FIN CARDS-->
+
+    <div id="footer">{% include 'taller/footer.html' %}</div>
+    <script src="mapaclima.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      var popoverTriggerList = [].slice.call(
+        document.querySelectorAll('[data-bs-toggle="popover"]')
+      );
+      var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+        return new bootstrap.Popover(popoverTriggerEl);
+      });
+    </script>
+  </body>
+</html>

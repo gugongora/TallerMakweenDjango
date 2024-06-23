@@ -1,0 +1,189 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Taller Mecanico Rayo Mcqueen</title>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src={% static "navbar_footer.js" %}></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  </head>
+
+    <div id="navbar">{% include 'taller/navbar.html' %}</div>
+
+    <br /><br /><br />
+    <!--HEADER-->
+    <div><img src={% static 'img/toptrabajos.png' %} alt="error" style="width: 100%" /></div>
+
+    <!--CARDS-->
+    <div class="container" style="padding-bottom: 5%">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="section-header text-center pb-5">
+            <h2>Trabajos realizados en nuestro taller:</h2>
+            <p>Conoce nuestro trabajo y a nuestros clientes satisfechos</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card col-md-10" style="margin: auto">
+        <div class="card-header">Reparación y pintura</div>
+        <div id="carouselExampleFade1" class="carousel slide carousel-fade">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src={% static 'img/trabajo1.1.png' %} class="d-block w-100" alt="..." />
+              <div class="carousel-caption d-none d-md-block">
+                <h1 class="titulo-trabajos">ANTES</h1>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src={% static 'img/trabajo1.2.png' %} class="d-block w-100" alt="..." />
+              <div class="carousel-caption d-none d-md-block">
+                <h1 class="titulo-trabajos">DESPUES</h1>
+              </div>
+            </div>
+          </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExampleFade1"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExampleFade1"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+        <div class="card-body">
+          <p class="card-text">Se realiza un trabajo de restauración.</p>
+        </div>
+      </div>
+      <br /><br />
+
+      <div class="card col-md-10" style="margin: auto">
+        <div class="card-header">Reparación y varios añadidos</div>
+        <div id="carouselExampleFade2" class="carousel slide carousel-fade">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src={% static 'img/trabajo2.1.png' %} class="d-block w-100" alt="..." />
+              <div class="carousel-caption d-none d-md-block">
+                <h1 class="titulo-trabajos">ANTES</h1>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src={% static 'img/trabajo2.2.png' %} class="d-block w-100" alt="..." />
+              <div class="carousel-caption d-none d-md-block">
+                <h1 class="titulo-trabajos">DESPUES</h1>
+              </div>
+            </div>
+          </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExampleFade2"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExampleFade2"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+        <div class="card-body">
+          <p class="card-text">
+            Cambio total, nuevo diseño y un agregado de luces.
+          </p>
+        </div>
+      </div>
+      <br /><br />
+      <!---->
+      <div class="card col-md-10" style="margin: auto">
+        <div class="card-header">
+          Reparación y cambio de pintura, añadidos extras
+        </div>
+        <div id="carouselExampleFade3" class="carousel slide carousel-fade">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src={% static 'img/trabajo3.1.png' %} class="d-block w-100" alt="..." />
+              <div class="carousel-caption d-none d-md-block">
+                <h1 class="titulo-trabajos">ANTES</h1>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src={% static 'img/trabajo3.2.png' %} class="d-block w-100" alt="..." />
+              <div class="carousel-caption d-none d-md-block">
+                <h1 class="titulo-trabajos">DESPUES</h1>
+              </div>
+            </div>
+          </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExampleFade3"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExampleFade3"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+        <div class="card-body">
+          <p class="card-text">Restauración y pintado, se agregan elementos.</p>
+        </div>
+      </div>
+    </div>
+    <!--FIN CARDS-->
+
+    <div id="footer">{% include 'taller/footer.html' %}</div>
+    <script src="mapaclima.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      var popoverTriggerList = [].slice.call(
+        document.querySelectorAll('[data-bs-toggle="popover"]')
+      );
+      var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+        return new bootstrap.Popover(popoverTriggerEl);
+      });
+    </script>
+  </body>
+</html>
