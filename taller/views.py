@@ -29,6 +29,18 @@ def refacciones(request):
     context={}
     return render(request, 'taller/refacciones.html', context)
 
+def trabajos(request):
+    context={}
+    return render(request, 'taller/trabajos.html', context)
+
+def equipo(request):
+    context={}
+    return render(request, 'taller/equipo.html', context)
+
+def contacto(request):
+    context={}
+    return render(request, 'taller/contacto.html', context)
+
 def crud(request):
     alumnos = Alumno.objects.all()
     context = {'alumnos':alumnos}
