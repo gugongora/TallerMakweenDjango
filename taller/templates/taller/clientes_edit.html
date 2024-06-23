@@ -1,48 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <div style="text-align: center">
-      {% if cliente %}
-            <h2>Formulario Actualizar Datos</h2><br>
-
-            <form action="{% url 'clientesUpdate' %}" method="POST">
+    <title>Actualizar Datos del Cliente</title>
+    <!-- Incluye el CSS de Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .form-small {
+            width: 50%; /* Establece el ancho de los campos a la mitad de su contenedor */
+            margin: auto; /* Centra los campos horizontalmente */
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar">{% include 'taller/navbar.html' %}</div>
+    <div class="container mt-5">
+        {% if cliente %}
+            <h2 class="text-center mb-4">Actualizar Datos del Cliente</h2>
+            <form action="{% url 'clientesUpdate' %}" method="POST" class="mb-3">
                 {% csrf_token %}
-
-                <pre>Rut:              <input type="text" name="rut"    value="{{cliente.rut}}"></pre>
-                <pre>Nombre:           <input type="text" name="nombre" value="{{cliente.nombre}}"></pre>
-                <pre>Apellido P.:      <input type="text" name="paterno" value="{{cliente.apellido_paterno}}"></pre>
-                <pre>Apellido M.:      <input type="text" name="materno" value="{{cliente.apellido_materno}}"></pre>
-                <pre>Fecha Nac.:          <input type="date" name="fechaNac" value="{{cliente.fecha_nacimiento|date:'Y-m-d'}}"> </pre>
-                <pre>Genero:            <select name="genero">
-                {% for genero in generos %}
-                        
-                    {% if genero.genero == cliente.id_genero.genero %}
-                        <option value="{{genero.id_genero}}" selected>{{genero.genero}}</option>
-                    {% else %}
-                        <option value="{{genero.id_genero}}">{{genero.genero}}</option>
-                    {% endif %}
-                {% endfor %}
-                </select></pre>
-
-                <pre>Celular:      <input type="text" name="telefono" value="{{cliente.telefono}}"></pre>
-                <pre>Email:      <input type="mail" name="email" value="{{cliente.email}}"></pre>
-                <pre>Dirección:      <input type="text" name="direccion" value="{{cliente.direccion}}"></pre>
-
-                <input type="submit" name="opcion" value="Actualizar" />
-            </form><br><br>
+                <div class="form-group form-small">
+                    <label for="rut">Rut:</label>
+                    <input type="text" class="form-control" name="rut" id="rut" value="{{cliente.rut}}">
+                </div>
+                <div class="form-group form-small">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" class="form-control" name="nombre" id="nombre" value="{{cliente.nombre}}">
+                </div>
+                <div class="form-group form-small">
+                    <label for="paterno">Apellido Paterno:</label>
+                    <input type="text" class="form-control" name="paterno" id="paterno" value="{{cliente.apellido_paterno}}">
+                </div>
+                <div class="form-group form-small">
+                    <label for="materno">Apellido Materno:</label>
+                    <input type="text" class="form-control" name="materno" id="materno" value="{{cliente.apellido_materno}}">
+                </div>
+                <div class="form-group form-small">
+                    <label for="fechaNac">Fecha de Nacimiento:</label>
+                    <input type="date" class="form-control" name="fechaNac" id="fechaNac" value="{{cliente.fecha_nacimiento|date:'Y-m-d'}}">
+                </div>
+                <div class="form-group form-small">
+                    <label for="genero">Género:</label>
+                    <select class="form-control" name="genero" id="genero">
+                        {% for genero in generos %}
+                            {% if genero.genero == cliente.id_genero.genero %}
+                                <option value="{{genero.id_genero}}" selected>{{genero.genero}}</option>
+                            {% else %}
+                                <option value="{{genero.id_genero}}">{{genero.genero}}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group form-small">
+                    <label for="telefono">Celular:</label>
+                    <input type="text" class="form-control" name="telefono" id="telefono" value="{{cliente.telefono}}">
+                </div>
+                <div class="form-group form-small">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" name="email" id="email" value="{{cliente.email}}">
+                </div>
+                <div class="form-group form-small">
+                    <label for="direccion">Dirección:</label>
+                    <input type="text" class="form-control" name="direccion" id="direccion" value="{{cliente.direccion}}">
+                </div>
+                <!-- Añade una clase de Bootstrap para centrar el botón -->
+                <br>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary" name="opcion" value="Actualizar">Actualizar</button>
+                </div>
+            </form>
         {% endif %}
-        <div id="idMensajes">
+        <div id="idMensajes" class="mt-3 text-center">
             {% if mensaje %}
-            {{mensaje}}
+                <div class="alert alert-info">{{ mensaje }}</div>
             {% endif %}
         </div>
-        <br><br>
-        <a href="{% url 'crud' %}"> Volver </a>
+        <div class="text-center mt-3">
+            <a href="{% url 'crud' %}" class="btn btn-secondary">Volver</a>
+        </div>
+        <br>
     </div>
+    <div id="footer">{% include 'taller/footer.html' %}</div>
 </body>
 </html>
