@@ -41,6 +41,10 @@ def contacto(request):
     context={}
     return render(request, 'taller/contacto.html', context)
 
+def nuevologin(request):
+    context={}
+    return render(request, 'taller/nuevologin.html', context)
+
 def crud(request):
     clientes = Cliente.objects.all()
     context={"clientes": clientes}
