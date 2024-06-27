@@ -78,10 +78,15 @@
           </li>
           <li>
             {% if user.is_authenticated %}
-              <a type="button" class="btn btn-light" href="{% url 'login' %}">{{user.username}}</a> 
+              <a type="button" class="btn btn-light" href="{% url 'crud' %}">{{user.username}}</a> 
                 {{usuario}}
                 <li>
                   <a type="button" class="btn btn-light" href="{% url 'logout' %}">Cerrar sesión</a> 
+                </li>
+                <li>
+                  <div class="dropdown-menu" aria-labelledby="nabarDropdown">
+                    <a class="dropdown-item" href=""></a>
+                  </div>
                 </li>
             {% else %}
               <a type="button" class="btn btn-light" href="{% url 'login' %}">CREAR UNA CUENTA/INGRESA</a>

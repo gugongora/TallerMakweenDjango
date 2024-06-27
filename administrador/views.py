@@ -2,26 +2,28 @@ from django.shortcuts import render
 
 from .models import Cliente,Genero,Usuario
 
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 
 @login_required
+@permission_required('administrador.can_add_usuario', login_url='index')
 def nuevologin(request):
     context={}
     return render(request, 'taller/nuevologin.html', context)
-
+@permission_required('administrador.can_add_usuario', login_url='index')
 def footer(request):
     context={}
     return render(request, 'taller/footer.html', context)
-
+@permission_required('administrador.can_add_usuario', login_url='index')
 def navbar(request):
     context={}
     return render(request, 'taller/navbar.html', context)
 @login_required
+@permission_required('administrador.can_add_usuario', login_url='index')
 def crud(request):
     clientes = Cliente.objects.all()
     context={"clientes": clientes}
     return render(request, 'administrador/clientes_list.html', context)
-
+@permission_required('administrador.can_add_usuario', login_url='index')
 def clientesAdd(request):
     if request.method != "POST":
         #no es un POST, por lo tanto se muestra el formulario para agregar.
@@ -55,7 +57,7 @@ def clientesAdd(request):
         obj.save()
         context={'mensaje': "Ok, datos grabados ..."}
         return render(request, 'administrador/clientes_add.html', context)
-    
+@permission_required('administrador.can_add_usuario', login_url='index')
 def clientes_del(request,pk):
     context={}
     try:
@@ -72,7 +74,7 @@ def clientes_del(request,pk):
         context = {'clientes': clientes, 'mensaje': mensaje}
         return render(request, 'administrador/clientes_list.html', context)
     
-
+@permission_required('administrador.can_add_usuario', login_url='index')
 def clientes_findEdit(request,pk):
 
     if pk != "":
@@ -87,7 +89,7 @@ def clientes_findEdit(request,pk):
         else:
             context={'mensaje':"Error, rut no existe..."}
             return render(request, 'administrador/clientes_list.html', context)
-        
+@permission_required('administrador.can_add_usuario', login_url='index')       
 def clientesUpdate(request):
 
     #Es un POST, por lo tanto se recuperan los datos del formulario
