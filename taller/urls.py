@@ -3,7 +3,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('index', views.index, name='index'),
     path('footer', views.footer, name='footer'),
     path('navbar', views.navbar, name='navbar'),
     path('mantencion', views.mantencion, name='mantencion'),
@@ -13,9 +13,10 @@ urlpatterns = [
     path('contacto', views.contacto, name='contacto'),
     path('equipo', views.equipo, name='equipo'),
     path('nuevologin', views.nuevologin, name='nuevologin'),
-    path('crud', views.crud, name='crud'),
-    path('clientesAdd', views.clientesAdd, name='clientesAdd'),
-    path('clientes_del/<str:pk>', views.clientes_del, name='clientes_del'),
-    path('clientes_findEdit/<str:pk>', views.clientes_findEdit, name='clientes_findEdit'),
-    path('clientesUpdate', views.clientesUpdate, name='clientesUpdate'),
+
+    path('agregar/<int:producto_id>/', views.agregar_al_carrito, name='agregar_al_carrito'),
+    path('carrito/', views.ver_carrito, name='ver_carrito'),
+    path('eliminar/<int:item_id>/', views.eliminar_del_carrito, name='eliminar_del_carrito'),
+    path('tienda/', views.lista_productos, name='lista_productos'),
+    path('vaciar/', views.vaciar_carrito, name='vaciar_carrito'),
 ]

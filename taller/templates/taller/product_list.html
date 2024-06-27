@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <div id="navbar">{% include 'taller/navbar.html' %}</div>
+
+    <div class="container">
+      <h1 class="my-4">Lista de Productos</h1>
+      <div class="row">
+        {% for producto in productos %}
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h4 class="card-title">{{ producto.nombre }}</h4>
+              <h5>{{ producto.precio }} CLP</h5>
+              <p class="card-text">Descripción del producto aquí.</p>
+            </div>
+            <div class="card-footer">
+              <a
+                href="{% url 'agregar_al_carrito' producto.pro_id %}"
+                class="btn btn-primary"
+                >Añadir al Carrito</a
+              >
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div id="footer">{% include 'taller/footer.html' %}</div>
+  </body>
+</html>

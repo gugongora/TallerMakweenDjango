@@ -1,0 +1,182 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+h5 {
+  color: brown;
+}
+.textcarrusel {
+  color: rgb(255, 255, 0);
+}
+
+.contacto {
+  padding-top: 5%;
+}
+
+body {
+  margin: 0;
+  background-color: white;
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.footer {
+  color: white;
+  background-color: black;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+
+.carousel-img {
+  width: 100%; /* Establece el ancho al 100% del contenedor del carrusel */
+  height: 300px; /* Establece una altura fija, puedes ajustarla según tus necesidades */
+  object-fit: cover; /* Ajusta la imagen para cubrir el contenedor manteniendo su relación de aspecto */
+}
+
+.img-cards-mant {
+  width: 100%;
+  display: block;
+}
+
+
+.titulo-inferior-1 {
+  text-align: center;
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
+.titulo-inferior {
+  margin-left: 80px;
+  padding-top: 6%;
+  text-align: center;
+}
+
+.titulo-inferior h2 {
+  font-size: 40px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.titulo-inferior p {
+  font-size: 20px;
+}
+
+.container-servicios {
+  padding-top: 7%;
+  padding-bottom: 2%;
+}
+
+
+/*FOTOS CABECERA*/
+.home-mantenimiento {
+  height: 110vh;
+  display: flex;
+  align-items: center;
+  background: url(img/mantenimientoo.jpg) no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.contenido-home-mantenimiento {
+  max-width: 60rem;
+}
+
+.contenido-home-mantenimiento h2 {
+  font-size: 50px;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-top: 250px;
+  margin-left: 100px;
+}
+
+.contenido-home-mantenimiento p {
+  font-size: 20px;
+  margin-top: 0px;
+  margin-left: 100px;
+}
+
+.home-reparacion {
+  height: 110vh;
+  display: flex;
+  align-items: center;
+  background: url(img/banner-reparacion.jpg) no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.contenido-home-reparacion {
+  max-width: 60rem;
+}
+
+.contenido-home-reparacion h2 {
+  color: aliceblue;
+  font-size: 50px;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-top: 250px;
+  margin-left: 100px;
+}
+
+.contenido-home-reparacion p {
+  color: aliceblue;
+  font-size: 20px;
+  margin-top: 0px;
+  margin-left: 100px;
+}
+
+.home-refacciones {
+  height: 110vh;
+  display: flex;
+  align-items: center;
+  background: url(img/refacciones-banner.jpg) no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.contenido-home-refacciones {
+  max-width: 60rem;
+}
+
+.contenido-home-refacciones h2 {
+  color: aliceblue;
+  font-size: 50px;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-top: 250px;
+  margin-left: 100px;
+}
+
+.contenido-home-refacciones p {
+  color: aliceblue;
+  font-size: 20px;
+  margin-top: 0px;
+  margin-left: 100px;
+}
+
+/*FONTS DE CAROUSEL*/
+.titulo-trabajos {
+  color: aliceblue;
+  font-size: 50px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.titulo-trabajos-inicio {
+  color: aliceblue;
+  font-size: 50px;
+  font-weight: 800;
+  text-transform: uppercase;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+}
+
+#map {
+  width: 100%;
+  height: 100%; /* Ajusta según las necesidades de diseño */
+}

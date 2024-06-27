@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <div id="navbar">{% include 'taller/navbar.html' %}</div>
+
+    <div class="container">
+      <h1 class="my-4">Carrito de Compras</h1>
+      {% if carrito and items %}
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Precio Unitario</th>
+            <th>Total</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in items %}
+          <tr>
+            <td>{{ item.producto.nombre }}</td>
+            <td>{{ item.cantidad }}</td>
+            <td>{{ item.producto.precio }} CLP</td>
+            <td>{{ item.get_total_precio }} CLP</td>
+            <td>
+              <a
+                href="{% url 'eliminar_del_carrito' item.id %}"
+                class="btn btn-danger btn-sm"
+                >Eliminar</a
+              >
+            </td>
+          </tr>
+          {% endfor %}
+          <tr>
+            <td colspan="3" class="text-right"><strong>Subtotal</strong></td>
+            <td colspan="2">{{ carrito.get_subtotal }} CLP</td>
+          </tr>
+        </tbody>
+      </table>
+      <a href="{% url 'vaciar_carrito' %}" class="btn btn-danger"
+        >Vaciar Carrito</a
+      >
+      {% else %}
+      <p>Tu carrito está vacío.</p>
+      {% endif %}
+      <a href="{% url 'lista_productos' %}" class="btn btn-primary"
+        >Seguir Comprando</a
+      >
+    </div>
+
+    <div id="footer">{% include 'taller/footer.html' %}</div>
+  </body>
+</html>

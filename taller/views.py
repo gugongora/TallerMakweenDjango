@@ -1,12 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Producto, Carrito, ItemCarrito
 
-from .models import Cliente,Genero,Usuario
+from datetime import datetime
 
 # Create your views here.
 
 def index(request):
-    clientes= Cliente.objects.all()
-    context={"clientes":clientes}
+    context={}
     return render(request, 'taller/index.html', context)
 
 def footer(request):
@@ -45,115 +45,79 @@ def nuevologin(request):
     context={}
     return render(request, 'taller/nuevologin.html', context)
 
-def crud(request):
-    clientes = Cliente.objects.all()
-    context={"clientes": clientes}
-    return render(request, 'taller/clientes_list.html', context)
-
-def clientesAdd(request):
-    if request.method != "POST":
-        #no es un POST, por lo tanto se muestra el formulario para agregar.
-        generos=Genero.objects.all()
-        context={'generos':generos}
-        return render(request, 'taller/clientes_add.html', context)
+def agregar_al_carrito(request, producto_id):
+    # Intentar obtener el carrito de la sesión, o crear uno nuevo si no existe
+    carrito_id = request.session.get('carrito_id')
+    if carrito_id:
+        carrito, created = Carrito.objects.get_or_create(id=carrito_id)
     else:
-        
-        rut=request.POST["rut"]
-        nombre=request.POST["nombre"]
-        aPaterno=request.POST["paterno"]
-        aMaterno=request.POST["materno"]
-        fechaNac=request.POST["fechaNac"]
-        genero=request.POST["genero"]
-        telefono=request.POST["telefono"]
-        email=request.POST["email"]
-        direccion=request.POST["direccion"]
-        activo="1"
-        
-        objGenero=Genero.objects.get(id_genero = genero)
-        obj=Cliente.objects.create( rut=rut,
-                                   nombre=nombre,
-                                   apellido_paterno=aPaterno,
-                                   apellido_materno=aMaterno,
-                                   fecha_nacimiento=fechaNac,
-                                   id_genero=objGenero,
-                                   telefono=telefono,
-                                   email=email, 
-                                   direccion=direccion,
-                                   activo=1)
-        obj.save()
-        context={'mensaje': "Ok, datos grabados ..."}
-        return render(request, 'taller/clientes_add.html', context)
+        carrito = Carrito.objects.create()
+        request.session['carrito_id'] = carrito.id
+
+    # Obtener el producto usando pro_id
+    producto = get_object_or_404(Producto, pro_id=producto_id)
+
+    # Agregar el producto al carrito o incrementar la cantidad si ya existe
+    item_carrito, created = ItemCarrito.objects.get_or_create(carrito=carrito, producto=producto)
+    if not created:
+        item_carrito.cantidad += 1
+    item_carrito.save()
+
+    # Redirigir a la vista del carrito para evitar la repetición de acciones
+    return redirect('ver_carrito')
+
+def obtener_carrito(request):
+
     
-def clientes_del(request,pk):
-    context={}
-    try:
-        cliente=Cliente.objects.get(rut=pk)
-
-        cliente.delete()
-        mensaje="Bien, datos eliminados ..."
-        clientes=Cliente.objects.all()
-        context = {'alumnos': clientes, 'mensaje': mensaje}
-        return render(request, 'taller/clientes_list.html', context)
-    except:
-        mensaje="Error, rut no existe..."
-        clientes = Cliente.objects.all()
-        context = {'clientes': clientes, 'mensaje': mensaje}
-        return render(request, 'taller/clientes_list.html', context)
-    
-
-def clientes_findEdit(request,pk):
-
-    if pk != "":
-        cliente=Cliente.objects.get(rut=pk)
-        generos=Genero.objects.all()
-
-        print(type(cliente.id_genero.genero))
-
-        context={'cliente':cliente, 'generos':generos}
-        if cliente:
-            return render(request, 'taller/clientes_edit.html', context)
-        else:
-            context={'mensaje':"Error, rut no existe..."}
-            return render(request, 'taller/clientes_list.html', context)
-        
-def clientesUpdate(request):
-
-    #Es un POST, por lo tanto se recuperan los datos del formulario
-    #y se graban en la tabla.
-    if request.method == "POST":
-
-        rut=request.POST["rut"]
-        nombre=request.POST["nombre"]
-        aPaterno=request.POST["paterno"]
-        aMaterno=request.POST["materno"]
-        fechaNac=request.POST["fechaNac"]
-        genero=request.POST["genero"]
-        telefono=request.POST["telefono"]
-        email=request.POST["email"]
-        direccion=request.POST["direccion"]
-        activo="1"
-        
-        objGenero=Genero.objects.get(id_genero = genero)
-
-        cliente = Cliente()
-        cliente.rut=rut
-        cliente.nombre=nombre
-        cliente.apellido_paterno=aPaterno
-        cliente.apellido_materno=aMaterno
-        cliente.fecha_nacimiento=fechaNac
-        cliente.id_genero=objGenero
-        cliente.telefono=telefono
-        cliente.email=email
-        cliente.direccion=direccion
-        cliente.activo=1
-        cliente.save()
-
-        generos=Genero.objects.all()
-        context={'mensaje': "Ok, datos actualizdos...", 'generos':generos, 'cliente':cliente}
-        return render(request, 'taller/clientes_edit.html', context)
+    carrito_id = request.session.get('carrito_id')
+    if carrito_id:
+        try:
+            return Carrito.objects.get(id=carrito_id)
+        except Carrito.DoesNotExist:
+            return None
     else:
-        #no es un POST, por lo tanto se muestra el formulario para agregar.
-        clientes = Cliente.objects.all()
-        context={'clientes':clientes}
-        return render(request, 'taller/clientes_list.html', context)
+        return None
 
+def vaciar_carrito(request):
+    carrito_id = request.session.get('carrito_id')
+    if carrito_id:
+        carrito = Carrito.objects.get(id=carrito_id)
+        carrito.items.all().delete()
+        carrito.delete()
+        request.session['carrito_id'] = None
+    return redirect('ver_carrito')
+
+def lista_productos(request):
+    productos = Producto.objects.all()
+    return render(request, 'taller/product_list.html', {'productos': productos})
+
+
+def ver_carrito(request):
+    carrito_id = request.session.get('carrito_id')
+    if carrito_id:
+        try:
+            carrito = Carrito.objects.get(id=carrito_id)
+            items = carrito.items.all()
+        except Carrito.DoesNotExist:
+            carrito = None
+            items = []
+    else:
+        carrito = None
+        items = []
+
+    return render(request, 'taller/ver_carrito.html', {'carrito': carrito, 'items': items})
+
+
+def eliminar_del_carrito(request, item_id):
+    # Obtener el item del carrito y eliminarlo
+    item = get_object_or_404(ItemCarrito, id=item_id)
+    carrito = item.carrito
+    item.delete()
+
+    # Verificar si el carrito está vacío y eliminarlo si es necesario
+    if not carrito.items.exists():
+        carrito.delete()
+        request.session['carrito_id'] = None
+
+    # Redirigir a la vista del carrito para evitar la repetición de acciones
+    return redirect('ver_carrito')
