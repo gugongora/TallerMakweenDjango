@@ -69,7 +69,9 @@ TEMPLATES = [
         },
     },
 ]
+
 LOGIN_REDIRECT_URL = "crud"
+LOGOUT_REDIRECT_URL = "index"
 
 WSGI_APPLICATION = 'taller_makween.wsgi.application'
 

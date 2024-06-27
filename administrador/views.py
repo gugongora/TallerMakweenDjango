@@ -2,7 +2,9 @@ from django.shortcuts import render
 
 from .models import Cliente,Genero,Usuario
 
-# Create your views here.
+from django.contrib.auth.decorators import login_required
+
+@login_required
 def nuevologin(request):
     context={}
     return render(request, 'taller/nuevologin.html', context)
@@ -12,12 +14,9 @@ def footer(request):
     return render(request, 'taller/footer.html', context)
 
 def navbar(request):
-    request.session["usuario"]="cgarcia"
-    usuario=request.session["usuario"]
-    context={'usuario':usuario}
+    context={}
     return render(request, 'taller/navbar.html', context)
-
-
+@login_required
 def crud(request):
     clientes = Cliente.objects.all()
     context={"clientes": clientes}
